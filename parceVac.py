@@ -1,9 +1,9 @@
 import re
 
-class parseVac():
-    def __init__(self, path) -> None:
+class parceVac():
+    def __init__(self, path = 'vaccinations.txt') -> None:
         self.path = path
-    def parseAll(self):
+    def parceAll(self):
         self.location = []
         self.iso_code = []
         self.date = []
