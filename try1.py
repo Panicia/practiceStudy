@@ -2,9 +2,7 @@ from parceVac import parceVac as pV
 from parceGeo import myGeom as pG
 
 pv = pV()
-pv.parceAll()
-pg = pG('fileGeom_adm0_a3.txt')
-pg.parceAll()
+pg = pG()
 
 names = pv.getDatalistFromAll('iso_code', 'start')
 

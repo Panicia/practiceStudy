@@ -1,24 +1,16 @@
-#from urllib.request import urlopen
-#import json
-#with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
-    #counties = json.load(response)
-
 import pandas as pd
-#df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv",
-                   #dtype={"fips": str})
-
 import plotly.express as px
 
 from parceVac import parceVac as pV
-from parceGeo import myGeom as pG
+from fionaTest import fionaTests as pG
 
 pv = pV()
-pv.parceAll()
 pg = pG()
-pg.parceAll()
 
-names = pv.getDatalistFromAll('iso_code', 'end')
+names = pv.getDatalistFromAll('location', 'end')
 attributes = pv.getDatalistFromAll('people_vaccinated', 'end')
+#names = pv.data['iso_code']
+#attributes = pv.data['people_vaccinated']
 
 dP = {'names': names, 'attr': attributes}
 
