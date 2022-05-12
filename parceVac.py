@@ -18,7 +18,10 @@ class parceVac():
             for i in range(0, len(self.data[name])):
                 if i != 0:
                         if self.data['location'][i - 1] != self.data['location'][i]:
-                             datalist.append(self.data[name][i])
+                            if self.data[name][i] == 'SSD':
+                                datalist.append('SDS')
+                            else:
+                                datalist.append(self.data[name][i])
                 else:
                     datalist.append(self.data[name][i])
         else:   

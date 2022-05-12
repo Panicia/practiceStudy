@@ -53,7 +53,7 @@ fig = px.choropleth_mapbox(dP, geojson = jF, locations = 'names', color = 'attr'
                            color_continuous_scale="Viridis",
                            range_color=(0, 100000000),
                            mapbox_style="carto-positron",
-                           zoom=1, center = {"lat": 37.0902, "lon": -95.7129},
+                           zoom=1.5, center = {"lat": 40, "lon": 0},
                            opacity=0.5,
                            labels={'attr':'covid'}
                           )
