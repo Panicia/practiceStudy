@@ -6,11 +6,13 @@ from fionaTest import fionaTests as pG
 
 import math
 
+title = 'total_vaccinations_per_hundred'
+
 pv = pV()
 pg = pG()
 
-names = pv.getDatalistFromAll('iso_code', 'end')
-attributes = pv.getDatalistFromAll('people_fully_vaccinated', 'end')
+names = pv.getDatalistFromAll('iso_code', 'start')
+attributes = pv.getDatalistFromAll(title, 'start')
 
 for i in range(len(attributes)):
     if math.isnan(attributes[i]):
@@ -50,12 +52,14 @@ rr = {'names': [jF['features'][18]['id'], jF['features'][22]['id']], 'attr': [1,
 kek = pd.DataFrame(data = rr)'''
 
 fig = px.choropleth_mapbox(dP, geojson = jF, locations = 'names', color = 'attr',
+                           hover_name = 'attr',
                            color_continuous_scale="Viridis",
-                           range_color=(0, 100000000),
+                           range_color=(0, 0.1),
                            mapbox_style="carto-positron",
                            zoom=1.5, center = {"lat": 40, "lon": 0},
                            opacity=0.5,
-                           labels={'attr':'covid'}
+                           labels={'attr': title + '(22.02.21)'},
+                           title=title
                           )
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
