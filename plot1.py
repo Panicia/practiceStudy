@@ -3,45 +3,56 @@ import plotly.express as px
 
 from parceVac import parceVac as pV
 
-pv = pV('vaccinations.txt')
-pv.parceAll()
+pv = pV()
+
+def plotData(countries, name):
+    fig = go.Figure()
+    
+    for c in countries:
+        X = pv.getDataListPerCountry(c, 'date')
+        Y = pv.getDataListPerCountry(c, name)
+        fig.add_trace(go.Scatter(x = X, y = Y,
+                                    mode='lines',
+                                    name=c))
+    fig.update_layout(
+    title = name,
+    xaxis_title = "Date",
+    yaxis_title = name,
+    legend_title = "Legend",
+    font = dict(
+        family="Courier New, monospace",
+        size=18,
+        color="Black"
+    ))
+    fig.show()
 
 
-'''name = 'people_vaccinated'
+""" name = 'people_vaccinated'
 fig = go.Figure(
-    data=[go.Bar(y = pv.getDatalistFromAll(name, 'end'), x = pv.getDatalistFromAll('location', 'end')), 
-          go.Bar(y = pv.getDatalistFromAll(name, 'start'), x = pv.getDatalistFromAll('location', 'start'))],
-    layout_title_text = name
-)
-fig.show()'''
+                data=[go.Bar(y = pv.getDatalistFromAll(name, 'end'), x = pv.getDatalistFromAll('country', 'end'))],
+                layout_title_text = name
+               )
+fig.show() """
 
-df = px.data.tips()
-fig = px.histogram(y = pv.getDatalistFromAll('daily_people_vaccinated_per_hundred', 'end'), x = pv.getDatalistFromAll('location', 'end'))
-fig.show()
+""" df = px.data.tips()
+fig = px.histogram(y = pv.getDatalistFromAll('people_vaccinated_per_hundred', 'end'), x = pv.getDatalistFromAll('country', 'end'))
+fig.show() """
 
-'''name = 'people_vaccinated_per_hundred'
+name = 'people_fully_vaccinated_per_hundred'
+name1 = 'daily_vaccinations'
+name2 = 'total_vaccinations'
+name3 = 'total_vaccinations_per_hundred'
+name4 = 'people_vaccinated'
 
-X1 = pv.getDataListPerCountry('Latvia', 'date')
-Y1 = pv.getDataListPerCountry('Latvia', name)
-l1 = {'date': X1, name: Y1}
+countries = [   
+                'Canada',
+                'United Kingdom',
+                'Latvia',
+                'Russia',
+                'United States',
+                'Switzerland',
+                'India',
+                'China'
+            ]
 
-X2 = pv.getDataListPerCountry('Russia', 'date')
-Y2 = pv.getDataListPerCountry('Russia', name)
-l2 = {'date': X2, name: Y2}
-
-X3 = pv.getDataListPerCountry('United States', 'date')
-Y3 = pv.getDataListPerCountry('United States', name)
-l3 = {'date': X3, name: Y3}
-
-fig = go.Figure()
-fig.add_trace(go.Scatter(x = X1, y = Y1,
-                    mode='lines',
-                    name='Latvia'))
-fig.add_trace(go.Scatter(x = X2, y = Y2,
-                    mode='lines',
-                    name='Russia'))
-fig.add_trace(go.Scatter(x = X3, y = Y3,
-                    mode='lines',
-                    name='United States'))
-
-fig.show()'''
+plotData(countries, name4)

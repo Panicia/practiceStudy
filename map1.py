@@ -6,7 +6,7 @@ from fionaTest import fionaTests as pG
 
 import math
 
-title = 'total_vaccinations_per_hundred'
+title = 'people_fully_vaccinated'
 
 pv = pV()
 pg = pG()
@@ -43,18 +43,10 @@ for i in doubles:
 
 dF = pd.DataFrame(data = dP)
 
-'''counties = {
-            'type': 'FeatureCollection',
-            'features': [jF['features'][18], jF['features'][22]]
-            }
-
-rr = {'names': [jF['features'][18]['id'], jF['features'][22]['id']], 'attr': [1,2]}            
-kek = pd.DataFrame(data = rr)'''
-
 fig = px.choropleth_mapbox(dP, geojson = jF, locations = 'names', color = 'attr',
                            hover_name = 'attr',
                            color_continuous_scale="Viridis",
-                           range_color=(0, 0.1),
+                           range_color=(0, 1000000),
                            mapbox_style="carto-positron",
                            zoom=1.5, center = {"lat": 40, "lon": 0},
                            opacity=0.5,
